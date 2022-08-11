@@ -1,0 +1,130 @@
+# white is go, black is no
+# start with no by default
+
+# practice (same for all groups except color)
+[0]
+name = 'practice'
+t_max = {fun = 'criterion', kwargs = {values = [0.75], consecutive = 5}}
+timing_tol = 0.06
+ball_color = 1
+
+[1]
+name = 'practice'
+t_max = {fun = 'criterion', kwargs = {values = [0.5], consecutive = 5}}
+timing_tol = 0.03
+ball_color = 1
+
+
+# 6 no default
+[2]
+name = 'go_no'
+no_go_colors = [0, 1]
+file = 'tables/no_default_block1.csv'
+
+[3]
+name = 'go_no'
+no_go_colors = [0, 1]
+file = 'tables/no_default_block2.csv'
+
+[4]
+name = 'go_no'
+no_go_colors = [0, 1]
+file = 'tables/no_default_block3.csv'
+
+[5]
+name = 'go_no'
+no_go_colors = [0, 1]
+file = 'tables/no_default_block4.csv'
+
+[6]
+name = 'go_no'
+no_go_colors = [0, 1]
+file = 'tables/no_default_block5.csv'
+
+[7]
+name = 'go_no'
+no_go_colors = [0, 1]
+file = 'tables/no_default_block6.csv'
+
+
+# 6 go default
+[8]
+name = 'go_no'
+no_go_colors = [0, 1]
+file = 'tables/go_default_block1.csv'
+
+[9]
+name = 'go_no'
+no_go_colors = [0, 1]
+file = 'tables/go_default_block2.csv'
+
+[10]
+name = 'go_no'
+no_go_colors = [0, 1]
+file = 'tables/go_default_block3.csv'
+
+[11]
+name = 'go_no'
+no_go_colors = [0, 1]
+file = 'tables/go_default_block4.csv'
+
+[12]
+name = 'go_no'
+no_go_colors = [0, 1]
+file = 'tables/go_default_block5.csv'
+
+[13]
+name = 'go_no'
+no_go_colors = [0, 1]
+file = 'tables/go_default_block6.csv'
+
+#### Redoing September stuff
+# practice arc
+[14]
+name = 'arc_no_timing_practice'
+trials = 30
+vanish = 0
+angle_offset = {fun = 'nonzerouniform', kwargs = {low = -4, high = 4, seed = 1}}
+
+# real arc
+[15]
+name = 'arc_no_timing'
+trials = 100
+vanish = 1
+t_prep = {fun = 'uniform', kwargs={low=0.35, high=0.45, seed=1}}
+angle_offset = {fun = 'nonzerouniform', kwargs= {low = -3, high = 3, seed = 2}}
+
+[16]
+name = 'arc_no_timing'
+trials = 100
+vanish = 1
+t_prep = {fun = 'uniform', kwargs={low=0.35, high=0.45, seed=1}}
+angle_offset = {fun = 'nonzerouniform', kwargs= {low = -3, high = 3, seed = 3}}
+
+[17]
+name = 'arc_no_timing'
+trials = 100
+vanish = 1
+t_prep = {fun = 'uniform', kwargs={low=0.35, high=0.45, seed=1}}
+angle_offset = {fun = 'nonzerouniform', kwargs= {low = -3, high = 3, seed = 4}}
+
+##### Rhythm
+# practice
+[18]
+name = 'tap_practice'
+n_visible=15
+n_invisible = 0
+trials=8
+
+# real
+[19]
+name = 'tap'
+n_visible = 10
+n_invisible = 10
+trials = 10
+
+[20]
+name = 'tap'
+n_visible = 10
+n_invisible = 10
+trials = 10

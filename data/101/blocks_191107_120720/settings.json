@@ -1,0 +1,11 @@
+{
+  "recipe_md5": "c910107989c812153a8c1027521c3d29",
+  "os": "Windows-10-10.0.17134",
+  "py_version": "3.7.4",
+  "rush_allowed": true,
+  "fps": 60,
+  "gpu": "Intel(R) HD Graphics 530",
+  "device": "custom",
+  "language": "en",
+  "drop_version": "0.0.1-20191107"
+}

@@ -1,0 +1,53 @@
+{
+  "initial": {
+    "fun": "choice",
+    "kwargs": {
+      "options": [
+        1,
+        0
+      ],
+      "probs": [
+        0.5,
+        0.5
+      ],
+      "seed": 1
+    }
+  },
+  "final": {
+    "fun": "choice",
+    "kwargs": {
+      "options": [
+        1,
+        0
+      ],
+      "probs": [
+        0.3,
+        0.7
+      ],
+      "seed": 1
+    }
+  },
+  "trials": 106,
+  "no_go_colors": [
+    1,
+    0
+  ],
+  "y_ball": 0.4,
+  "y_line": -0.3,
+  "t_max": 0.5,
+  "t_pretrial": 0.2,
+  "t_windup": 0.1,
+  "t_prep": {
+    "fun": "uniform",
+    "kwargs": {
+      "low": 0.05,
+      "high": 0.5,
+      "seed": 1
+    }
+  },
+  "t_feedback": 0.3,
+  "timing_tol": 0.03,
+  "name": "go_no",
+  "file": "tables/no_default_block5.csv",
+  "block_key": "6"
+}

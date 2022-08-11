@@ -1,0 +1,4 @@
+analysis/
+CompareRT_keys/
+*.jpg
+*.xlsx

@@ -1,0 +1,22 @@
+{
+  "t_max": {
+    "fun": "criterion",
+    "kwargs": {
+      "values": [
+        0.75
+      ],
+      "consecutive": 5
+    }
+  },
+  "y_ball": 0.4,
+  "y_line": -0.3,
+  "t_pretrial": 0.5,
+  "t_windup": 0.1,
+  "t_feedback": 0.5,
+  "timing_tol": 0.06,
+  "t_prep": 0.5,
+  "trials": 200,
+  "ball_color": 0,
+  "name": "practice",
+  "block_key": "0"
+}
