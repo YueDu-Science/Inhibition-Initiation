@@ -3,7 +3,7 @@ To run go-no-go master
 conda create -n py37 python=3.7
 conda activate py37
 python -m venv env
-env\Scripts\activate.bat
+env/Scripts/activate.bat
 preinstall.bat
 python -m pip install -e .
 
@@ -28,7 +28,7 @@ env\Scripts\deactivate.bat
 
 To install toon:
 
-python -m pip install toon==0.12.7
+python -m pip install toon==0.12.8
 
 To install pip:
-python -m pip install pip==19.2.3
+python -m pip install pip==20.0
