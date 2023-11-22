@@ -1,0 +1,22 @@
+equavalence test by TOSTER in R:
+
+
+cor(x,y)
+tsum_TOST(m1=0.2945,sd1=0.0283,n1 = 35, m2=0.301,sd2=0.0372,n2=35, r12=0.44,paired = TRUE, low_eqbound=-0.7,high_eqbound=0.7,eqbound_type = "SMD", bias_correction = TRUE, rm_correction = TRUE)
+
+
+Bayes factor:
+Source:https://richarddmorey.github.io/BayesFactor/
+pakeage used: BayesFactor in R
+bf = ttestBF(x = BF$mu_no, y = BF$mu_go_10, paired=TRUE, nullInterval=c(-Inf,0))
+1/bf
+
+
+t-test
+library(effsize)
+t.test(BF$mu_no, BF$mu_go, paired = TRUE, alternative = "two.sided")
+cohen.d(BF$mu_no, BF$mu_go, paired = TRUE)
+
+
+library("pwr")
+pwr.t.test(n=35,d=0.31,sig.level=0.05,type="two.sample",alternative="two.sided")
