@@ -1,0 +1,126 @@
+%%% this code plot Phit and SAT for groups
+clear all;
+clc;            
+addpath(genpath('D:\Project\Publication_Data_Code\Initiation-versus-Inhibition\analysis'));
+
+mks = 6; lw = 0.8;
+
+load Init_Inhb_Analysis.mat;  % Analysis
+D = Analysis.D;
+A = Analysis.A;
+%head(DATA,3)  % check if data look right
+xplot= D.xplot;
+
+load Init_Inhb_Clean.mat;  % load raw data
+DATA = STOPSIG_CLEAN.EXP;
+%% Figure S3
+SUB = [1:15 17:size(D.sub_name,2)]; % subject 16 was excluded; see manuscript
+sub_name = unique(DATA.id);
+for s = 1:length(SUB)
+    ind_sub = DATA.id == sub_name(s);
+    data = DATA(ind_sub == 1,:);
+    ind_blk = find(data.block_key == 2,1);
+    if data.initial(ind_blk) == 0
+        sub_order(s) = 0; %nr-to-r first
+    elseif data.initial(ind_blk) == 1
+        sub_order(s) = 1; % r-to-nr first
+    end
+end
+
+for s = 1:length(SUB)
+    mu_gono(s) = A.model_gono_nolate{SUB(s)}(1); % estimated value for model parameter
+    mu_nogo(s) = A.model_nogo_nolate{SUB(s)}(1); % (1) is \mu
+end
+
+mu_gono0 = mu_gono(sub_order == 0);
+mu_gono1 = mu_gono(sub_order == 1);
+
+mu_nogo0 = mu_nogo(sub_order == 0);
+mu_nogo1 = mu_nogo(sub_order == 1);
+
+figure_rt = figure('name','rt');  
+set(gcf,'color','w');
+hold on
+set(gca,'TickDir','out');
+axis([0 6 0 0.5])
+hAx=gca;                    % create an axes
+hAx.LineWidth=1.2; 
+ylabel('\mu (ms)','FontSize',22, 'FontWeight','bold');
+
+
+set(gca,'xTick',[1.5 2.5],'xTickLabel',{'\mu{NR}','\mu{R}'},'FontSize',22, 'FontWeight','normal','FontName','Arial');
+set(gca,'yTick',[0:0.05:0.5],'yTickLabel',[0:50:500],'FontSize',22, 'FontWeight','normal','FontName','Arial');
+ax = gca;
+ax.XAxis.TickLength = [0,0];
+
+f1 = bar(1,nanmean(mu_gono0),'FaceColor',[0.5,0.5,0.5],'EdgeColor',[0.5,0.5,0.5],'Linewidth',lw);
+f2 = bar(2,nanmean(mu_gono1),'FaceColor',[0.5,0.5,0.5],'EdgeColor','w','Linewidth',lw);
+alpha(f1,.3)
+alpha(f2,.3)
+
+xx = 1+randn(100,1)*0.15;
+for s = 1:size(mu_gono0,1)
+    plot(xx(s),mu_gono0(s,1),'o','color',[0.5,0.5,0.5],'markerfacecolor',[0.5,0.5,0.5],'Markersize',mks,'linewidth',lw-0.4)
+end
+
+xx = 2+randn(100,1)*0.15;
+for s = 1:size(mu_gono1,1)
+    plot(xx(s),mu_gono1(s,1),'o','color',[0.5,0.5,0.5],'markerfacecolor','w','Markersize',mks,'linewidth',lw-0.4)
+end
+
+h = [1];
+hE = errorbar(h',nanmean(mu_gono0),nanstd(mu_gono0)/sqrt(numel(mu_gono0)),...
+    'k','MarkerSize',3);
+set(hE(1),'LineWidth',0.5,'color','k')
+hE.CapSize = 0;
+
+h = [2];
+hE = errorbar(h',nanmean(mu_gono1),nanstd(mu_gono1)/sqrt(numel(mu_gono1)),...
+    'k','MarkerSize',3);
+set(hE(1),'LineWidth',0.5,'color','k')
+hE.CapSize = 0;
+
+f1 = bar(4,nanmean(mu_nogo0),'FaceColor',[0.5,0.5,0.5],'EdgeColor',[0.5,0.5,0.5],'Linewidth',lw);
+f2 = bar(5,nanmean(mu_nogo1),'FaceColor',[0.5,0.5,0.5],'EdgeColor','w','Linewidth',lw);
+alpha(f1,.3)
+alpha(f2,.3)
+
+xx = 4+randn(100,1)*0.15;
+for s = 1:size(mu_nogo0,1)
+    plot(xx(s),mu_nogo0(s,1),'o','color',[0.5,0.5,0.5],'markerfacecolor',[0.5,0.5,0.5],'Markersize',mks,'linewidth',lw-0.4)
+end
+
+xx = 5+randn(100,1)*0.15;
+for s = 1:size(mu_nogo1,1)
+    plot(xx(s),mu_nogo1(s,1),'o','color',[0.5,0.5,0.5],'markerfacecolor','w','Markersize',mks,'linewidth',lw-0.4)
+end
+
+h = [4];
+hE = errorbar(h',nanmean(mu_nogo0),nanstd(mu_nogo0)/sqrt(numel(mu_nogo0)),...
+    'k','MarkerSize',3);
+set(hE(1),'LineWidth',0.5,'color','k')
+hE.CapSize = 0;
+
+h = [5];
+hE = errorbar(h',nanmean(mu_nogo1),nanstd(mu_nogo1)/sqrt(numel(mu_gono1)),...
+    'k','MarkerSize',3);
+set(hE(1),'LineWidth',0.5,'color','k')
+hE.CapSize = 0;
+% to get stats and ci
+% nanmean(mu_gono(sub_order==1)' - mu_nogo(sub_order==1)')
+% [h,p,ci,stats] = ttest(mu_gono(sub_order==1),mu_nogo(sub_order==1))
+
+% nanmean(mu_gono(sub_order==0)' - mu_nogo(sub_order==0)')
+% [h,p,ci,stats] = ttest(mu_gono(sub_order==0),mu_nogo(sub_order==0))
+
+% nanmean(mu_gono(sub_order==1)) - nanmean(mu_gono(sub_order==0))
+% [h,p,ci,stats] = ttest2(mu_gono(sub_order==1),mu_gono(sub_order==0))
+
+% nanmean(mu_nogo(sub_order==1)) - nanmean(mu_nogo(sub_order==0))
+% [h,p,ci,stats] = ttest2(mu_nogo(sub_order==1),mu_nogo(sub_order==0))
+
+% set(gcf, 'Units', 'Inches', 'Position', [0, 0, 5, 5],...
+%      'PaperUnits', 'Inches', 'PaperSize', [5, 5])
+% set(gcf,'renderer','Painters');
+% cd('D:\Project\StopSignal_Analysis\analysis\Figure');
+% print(figure_rt,'order_effect', '-depsc','-r600');
