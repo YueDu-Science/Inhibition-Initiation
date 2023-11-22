@@ -1,4 +1,3 @@
-analysis/
-CompareRT_keys/
+analysis/more.txt
+analysis/BF.xlsx
 *.jpg
-*.xlsx
